@@ -1,0 +1,12 @@
+.swiper-slide-thumb-active {
+    opacity: 1 ;
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+    opacity: 0;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+    opacity: 1;
+}
