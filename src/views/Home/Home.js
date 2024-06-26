@@ -119,7 +119,7 @@ function Home() {
     },
     {
       title: 'Pesca magnética',
-      text: 'Normalmente, se ata se ata el imán de neodimio a un hilo y se hunde en el agua para encontrar cualquier tesoro metálico alojado en el fondo del mar.',
+      text: 'Normalmente se ata el imán de neodimio a un hilo y se hunde en el agua para encontrar cualquier tesoro metálico alojado en el fondo del mar.',
       icon: <div className="relative ">
         <motion.div
           className=" "
@@ -252,7 +252,7 @@ function Home() {
               <p className='' >
                 Lo mejor que tienen estos imanes es que su magnetismo es 1.000 veces superior a su propio peso, por lo que tienen una gran resistencia y aguante (por eso te permite sujetar muchos folios a la vez, o imantar piezas en una pizarra gruesa de vidrio).
 
-                Además, es muy difícil de desmagnetizar, cualidad que le suma resistencia y fiabilidad en es uso.
+                Además, es muy difícil de desmagnetizar, cualidad que le suma resistencia y fiabilidad en su uso.
 
                 En cuanto a las desventajas, debe trabajarse a menos de 80 grados (lo cual es más determinante en un uso industrial) y es fácilmente corrosivo. Por lo que normalmente no lo encontrarás en estado puro, sino envuelto o bañado en otro material.
               </p>

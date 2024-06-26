@@ -11,7 +11,7 @@ function NotFound() {
   return (
     <main className='m-auto text-center p-4'>
 
-      <div className='font-semibold text-5xl xs:text-7xl break-all'>Pagina no encontrada</div>
+      <div className='font-semibold text-5xl xs:text-7xl break-all'>Página no encontrada</div>
 
       <Button variant='ghost' color='secondary' className='mt-8' onClick={() => navigate('/')}>
         Ir al inicio

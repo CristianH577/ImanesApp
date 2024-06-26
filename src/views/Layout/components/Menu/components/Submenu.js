@@ -7,11 +7,11 @@ function Submenu({ items, navigate, location, main, icons }) {
             variants={{
                 hidden: {
                     opacity: 1,
-                    y: -40,
+                    y: '-100%',
                 },
                 visible: {
                     opacity: 1,
-                    y: 0,
+                    y: '-10%',
                     transition: {
                         delayChildren: .1,
                         staggerChildren: .1
@@ -20,7 +20,7 @@ function Submenu({ items, navigate, location, main, icons }) {
             }}
             initial="hidden"
             animate="visible"
-            className='bg-content1 dark:bg-content2 shadow-lg flex flex-wrap justify-center'
+            className='bg-content1 dark:bg-content2 shadow-lg flex flex-wrap justify-center pt-5 dark:pt-4'
         >
             {items.map(item =>
                 <motion.li

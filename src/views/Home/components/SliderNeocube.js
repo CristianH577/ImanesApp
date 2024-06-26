@@ -69,7 +69,7 @@ function SliderNeocube() {
                     </h1>
 
                     <p className='text-lg xs:text-2xl '>
-                        216 imanes efericos de 5mm en 8 colores diferentes ideales para dejar llevar la imaginacion.
+                        216 imanes esféricos de 5mm en 8 colores diferentes ideales para dejar llevar la imaginación.
                     </p>
 
                     <Button
@@ -78,7 +78,7 @@ function SliderNeocube() {
                         className="font-bold mt-4"
                         onPress={() => navigate('/productos#neocube')}
                     >
-                        Ver mas
+                        Ver más
                     </Button>
                 </div>
             </div>

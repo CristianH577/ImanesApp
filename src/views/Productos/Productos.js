@@ -13,7 +13,6 @@ import FiltersModal from './components/FiltersModal.js';
 import CardArticle from './components/CardArticle.js';
 import ModalArticle from './components/ModalArticle.js';
 
-// import data_default from '../../assets/files/lista_imanes.json';
 import database from '../../assets/files/lista_imanes.json';
 
 
@@ -25,8 +24,6 @@ function Productos() {
         ...database,
         articles: [
             ...database.articles,
-            // ...Array(50).fill(database.articles[0]),
-            // ...Array(40).fill(database.articles[1]),
         ]
     }
     const [data, setData] = useState(data_default)
@@ -93,17 +90,6 @@ function Productos() {
                     default:
                         break;
                 }
-                // if (field_data.kind === 'select') {
-                //     const values = []
-                //     Object.entries(field_data?.values).forEach(([key, val]) => {
-                //         values.push({
-                //             id: key,
-                //             value: key,
-                //             label: val,
-                //         })
-                //     })
-                //     filter.values = values
-                // }
                 new_filters[field_data?.kind].push(filter)
             } catch (error) {
 
@@ -329,7 +315,7 @@ function Productos() {
 
 
     return (
-        <main className='flex flex-col items-center py-8 xs:px-4 sm:px-8 '>
+        <main className='flex flex-col items-center py-8 xs:px-4 sm:px-8 md:py-10 lg:pb-20 '>
 
             {/* buscador */}
             <ErrorBoundary >
@@ -351,7 +337,7 @@ function Productos() {
                 </motion.div>
             </ErrorBoundary>
 
-            <p className='text-small text-default-400 p-2'>Presione en el articulo para ver mas informacion e imagenes</p>
+            <p className='text-small text-default-400 p-2'>Presione en el artículo para ver más información e imágenes</p>
 
             {/* articulos */}
             <ErrorBoundary >

@@ -56,7 +56,7 @@ function SliderSet() {
                     </h1>
 
                     <p className='text-lg xs:text-2xl '>
-                        Juego de varas y esferas que se combinan entre si para crear formas y estructuras.
+                        Juego de varas y esferas que se combinan entre sí para crear formas y estructuras.
                     </p>
 
                     <Button
@@ -65,7 +65,7 @@ function SliderSet() {
                         className="font-bold mt-4"
                         onPress={() => navigate('/productos#set')}
                     >
-                        Ver mas
+                        Ver más
                     </Button>
                 </div>
 

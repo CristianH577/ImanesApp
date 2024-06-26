@@ -195,7 +195,7 @@ function Carrito() {
                 animate="animate"
             >
                 <TableCustom
-                    ariaLabel="Lista de articulos deseados"
+                    ariaLabel="Lista de artículos deseados"
                     className="max-w-[650px] scrollbar-hide"
                     selectionMode="single"
                     columns={cols}

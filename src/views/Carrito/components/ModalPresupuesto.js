@@ -155,7 +155,7 @@ function ModalPresupuesto({ isOpen, dark, onOpenChange, handleSubmit }) {
                                     }}
                                 />
 
-                                <p className="text-small text-default-400">Enviar el formulario abrira una nueva pestaña con un enlace a WhatsappWeb junto con los datos y lista ingresados para enviarlos en forma de mensaje.</p>
+                                <p className="text-small text-default-400">Enviar el formulario abrirá una nueva pestaña con un enlace a WhatsappWeb junto con los datos y lista ingresados para enviarlos en forma de mensaje.</p>
                             </ModalBody>
 
                             <ModalFooter className=''>

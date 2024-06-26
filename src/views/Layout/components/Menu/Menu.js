@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Navbar, NavbarContent, NavbarItem, NavbarMenuToggle, Button, NavbarMenu, Divider } from "@nextui-org/react";
+import { Navbar, NavbarContent, NavbarItem, NavbarMenuToggle, Button, NavbarMenu } from "@nextui-org/react";
 
 import MenuMovilListItems from './components/MenuMovilListItems.js';
 import Submenu from './components/Submenu.js';
@@ -69,12 +69,10 @@ function Menu({ dark, setDark, cart }) {
         openMenuMovil={openMenuMovil}
       />
 
-      <Divider className='w-[60%]' />
-
       <Navbar
         id='nav-main'
         isMenuOpen={openMenuMovil}
-        className='shadow-lg transition-all bg-content1 bg-custo'
+        className='shadow-lg transition-all bg-content1'
         classNames={{
           wrapper: 'xs:h-[48px] xs:ps-0',
           item:'dark:data-[active=true]:text-warning data-[active=true]:text-custom-red-dark'
@@ -95,7 +93,6 @@ function Menu({ dark, setDark, cart }) {
           {menu_items.map(item =>
             < NavbarItem
               key={item}
-              // isActive={['imanes', 'otros'].includes(item) ? location.search.includes(item) : location.pathname.includes(item)}
               isActive={location?.search ? location.search.includes(item) : location.pathname.includes(item)}
               className='hover:bg-content3 px-2 cursor-pointer capitalize h-full flex items-center justify-center'
               onClick={() => {
@@ -174,7 +171,7 @@ function Menu({ dark, setDark, cart }) {
         <div
           className='w-full absolute z-10 '
           style={{
-            top: `calc(${document.querySelector('#nav-main').offsetHeight}px + ${document.querySelector('#nav-top').offsetHeight}px)`
+            top: `calc(${document.querySelector('#nav-main').offsetHeight}px + ${document.querySelector('#nav-top').offsetHeight}px*.9)`
           }}
           onMouseEnter={() => setSubmenu(submenu)}
           onMouseLeave={() => setSubmenu(false)}

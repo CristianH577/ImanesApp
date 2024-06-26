@@ -1,7 +1,7 @@
 
 
 
-import { Button, Badge } from "@nextui-org/react";
+import { Button, Badge, Divider } from "@nextui-org/react";
 import { motion } from "framer-motion"
 
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -15,7 +15,7 @@ function NavbarTop({ cart, navigate, openMenuMovil, submenu }) {
     const compra_length = Object.keys(cart).length
 
     return (
-        <div id='nav-top' className='h-[64px] sm:h-[96px] lg:h-[128px] flex justify-center items-center relative w-full' >
+        <div id='nav-top' className='h-[64px] sm:h-[96px] lg:h-[128px] flex justify-center items-center relative w-full z-20 bg-content1 ' >
             <motion.span
                 className='h-full flex justify-center items-center  cursor-pointer gap-1 py-3 sm:py-4 lg:py-6'
                 whileHover={{
@@ -62,6 +62,8 @@ function NavbarTop({ cart, navigate, openMenuMovil, submenu }) {
                     </Button>
                 </Badge>
             </motion.div>
+
+            <Divider className='w-[60%] absolute bottom-0' />
         </div>
     );
 }

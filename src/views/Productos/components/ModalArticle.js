@@ -1,7 +1,7 @@
 import './ModalArticle.css'
 import { useEffect, useState } from "react";
 
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -66,7 +66,7 @@ function ModalArticle({ item, setItem, dark, fieldsData }) {
                                 slidesPerView={1}
                                 loop={imgs.length > 1}
                                 navigation
-                                mousewheel
+                                mousewheel={imgs.length > 1}
                                 className='w-full xs:h-[400px] shadow-md xs:rounded-lg border border-divider bg-content3'
                                 style={{
                                     '--swiper-navigation-color': 'red',

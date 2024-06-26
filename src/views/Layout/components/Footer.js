@@ -87,7 +87,7 @@ function Footer() {
 
 
             <div className='text-center space-y-4 my-4 pb-4  w-full '>
-                <h2 className='text-3xl font-semibold'>Envio</h2>
+                <h2 className='text-3xl font-semibold'>Envío</h2>
 
                 <div className='flex flex-wrap justify-center gap-10 '>
                     {formas_envio.map(forma =>
@@ -116,7 +116,7 @@ function Footer() {
                 <Divider className='w-[50%]' />
                 <div className='flex  sm:justify-evenly max-sm:flex-col gap-1 py-1 text-center '>
                     <p className='w-[220px] sm:text-end sm:pe-2'>Tel. +xx (xxx) xxx-xxxxxx</p>
-                    <p className='w-[220px] sm:border-s border-divider sm:text-start sm:ps-2'>Ciudad, Provincia, Pais</p>
+                    <p className='w-[220px] sm:border-s border-divider sm:text-start sm:ps-2'>Ciudad, Provincia, País</p>
                 </div>
                 <Divider className='w-[50%]' />
 
