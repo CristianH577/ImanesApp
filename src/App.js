@@ -8,6 +8,10 @@ import NotFound from "./views/NotFound/NotFound.js";
 
 import Productos from "./views/Productos/Productos.js";
 import Carrito from "./views/Carrito/Carrito.js";
+import MiCuenta from "./views/MiCuenta/MiCuenta.js";
+
+import Administrar from "./views/Administrar/Administrar.js";
+import Pedidos from "./views/Pedidos/Pedidos.js";
 
 import Test from "./views/Plantilla/Test.js";
 
@@ -17,6 +21,7 @@ function App() {
       path: 'inicio',
       content: <Home />,
     },
+
     {
       path: 'productos',
       content: <Productos />,
@@ -25,6 +30,20 @@ function App() {
       path: 'carrito',
       content: <Carrito />,
     },
+    {
+      path: 'micuenta',
+      content: <MiCuenta />,
+    },
+    
+    {
+      path: 'administrar',
+      content: <Administrar />,
+    },
+    {
+      path: 'pedidos',
+      content: <Pedidos />,
+    },
+
     {
       path: 'test',
       content: <Test />,

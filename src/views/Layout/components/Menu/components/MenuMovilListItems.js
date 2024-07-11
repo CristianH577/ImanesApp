@@ -84,14 +84,22 @@ function MenuMovilListItems({ items, submenus, icons, navigate, location }) {
                 animate="visible"
                 className='w-screen'
             >
-                {items.map(item =>
-                    <motion.li
+                {items.map(item => {
+                    const isActive = location?.search ? location.search.includes(item) : location.pathname.includes(item)
+
+                    return <motion.li
                         key={item}
                         className='capitalize text-lg cursor-pointer border-b border-divider hover:bg-content2 flex justify-between items-center '
-                        variants={variants.main_li}
-                        onClick={() => navigate("/" + item)}
+                        variants={variants.main_li} onClick={() => {
+                            var to = item
+                            if (['imanes', 'otros'].includes(item)) {
+                                to = 'productos?categoria=' + item
+                            }
+                            navigate('/' + to)
+                            setSubmenu(false)
+                        }}
                         style={{
-                            fontWeight: location.pathname.includes(item) ? 'bold' : ''
+                            fontWeight: isActive ? 'bold' : ''
                         }}
                     >
                         <div className='p-2 ps-4 flex gap-2 items-center'>
@@ -110,7 +118,7 @@ function MenuMovilListItems({ items, submenus, icons, navigate, location }) {
                             </Button>
                         )}
                     </motion.li>
-                )}
+                })}
             </motion.ul>
 
             {/* submenu */}
@@ -127,14 +135,16 @@ function MenuMovilListItems({ items, submenus, icons, navigate, location }) {
                 >
                     <BsChevronBarLeft size={25} />
                 </motion.li>
-                {submenu && submenus[submenu].map(sub =>
-                    <motion.li
+                {submenu && submenus[submenu].map(sub => {
+                    return <motion.li
                         key={sub}
                         variants={variants.sub_li}
                         className='capitalize text-lg cursor-pointer border-b border-divider hover:bg-content2 flex justify-between items-center '
-                        onClick={() => navigate(`/${submenu}/${sub}`)}
+                        onClick={() => {
+                            navigate(`/productos?categoria=${submenu}&forma=${sub}`)
+                        }}
                         style={{
-                            fontWeight: location.pathname.includes(sub) ? 'bold' : ''
+                            fontWeight: location.search.includes(sub) ? 'bold' : ''
                         }}
                     >
                         <div className='p-2 ps-4 flex gap-2 items-center'>
@@ -142,7 +152,7 @@ function MenuMovilListItems({ items, submenus, icons, navigate, location }) {
                             <p >{sub}</p>
                         </div>
                     </motion.li>
-                )}
+                })}
             </motion.ul>
         </motion.div>
     );

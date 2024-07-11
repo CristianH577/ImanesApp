@@ -1,4 +1,6 @@
 
+import { useState } from "react";
+import { postFAPI } from "../../libs/fastapi";
 import { useOutletContext } from "react-router-dom";
 
 import { Button, Input, useDisclosure, Image } from "@nextui-org/react";
@@ -6,11 +8,11 @@ import { Button, Input, useDisclosure, Image } from "@nextui-org/react";
 import { motion } from "framer-motion";
 
 import ModalPresupuesto from "./components/ModalPresupuesto";
+import TableCustom from "../../components/TableCustom";
 
 import { MdDeleteOutline } from "react-icons/md";
 import database from '../../assets/files/lista_imanes.json';
 import unknown from '../../assets/imgs/products/unknown.svg'
-import TableCustom from "../../components/TableCustom";
 
 
 function Carrito() {
@@ -18,6 +20,7 @@ function Carrito() {
     const contextImgs = require.context('../../assets/imgs/products', true)
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure()
+    const [loading, setLoading] = useState(false)
 
     const cols = ['img', 'categoria', 'nombre', 'forma', 'denominacion', 'cantidad', 'actions']
 
@@ -167,8 +170,23 @@ function Carrito() {
         const encoded_message = encodeURIComponent(msg)
         // eslint-disable-next-line
         const url = `${base_url}&text=${encoded_message}`
-        // console.log(url)
-        // window.open(url, '_blank').focus()
+        window.open(url, '_blank').focus()
+    }
+
+    const makeOrder = async () => {
+        setLoading(true)
+
+        const data = {
+            id_user: 1,
+            articulos: context.cart,
+        }
+
+        const r = await postFAPI('/addOrder', data)
+        if (r.bool) {
+            context.setCart({})
+        }
+
+        setLoading(false)
     }
 
 
@@ -208,12 +226,16 @@ function Carrito() {
                     }}
                 />
 
-                <div className="w-full flex justify-center sm:justify-end my-4">
-                    <div>
-                        <Button color="secondary" variant='shadow' onPress={onOpen}>
-                            Solicitar Presupuesto
-                        </Button>
-                    </div>
+                <div className="w-full flex justify-center sm:justify-end my-6">
+                    <Button
+                        color="secondary"
+                        variant='shadow'
+                        isLoading={loading}
+                        isDisabled={Object.keys(context.cart).length < 1}
+                        onPress={context.user ? makeOrder : onOpen}
+                    >
+                        {context.user ? "Hacer pedido" : "Solicitar Presupuesto"}
+                    </Button>
                 </div>
             </motion.div>
 

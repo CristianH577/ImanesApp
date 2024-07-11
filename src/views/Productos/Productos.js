@@ -358,7 +358,7 @@ function Productos() {
                                             >
                                                 <CardArticle
                                                     item={art}
-                                                    showInfo={() => setArticleDataModal(art)}
+                                                    showInfo={() => setArticleDataModal(i)}
                                                     fieldsData={database.fields_data}
                                                 />
                                             </motion.div>
@@ -423,8 +423,9 @@ function Productos() {
             {/* article */}
             <ErrorBoundary >
                 <ModalArticle
-                    item={articleDataModal}
-                    setItem={setArticleDataModal}
+                    item={listPages[articleDataModal] || false}
+                    index={articleDataModal}
+                    setIndex={setArticleDataModal}
                     dark={context.dark}
                     fieldsData={database.fields_data}
                 />

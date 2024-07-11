@@ -1,10 +1,14 @@
 import React from "react";
 
 
-function TableCustom({ className, classNames, columns, rows, makeCellContent, makeHeaderCell, makeRow, ariaLabel, selectionMode }) {
+function TableCustom({ className, classNames, columns, rows, rowColumnId, makeCellContent, makeHeaderCell, makeRow, ariaLabel, selectionMode, selectedRows, onSelectedRows }) {
+
+    const handleSelectedRow = id => {
+        onSelectedRows && onSelectedRows(id)
+    }
 
     return (
-        <section
+        <div
             data-slot="container"
             className={"p-4 bg-content1 rounded-large shadow-small overflow-auto w-full " + (className || classNames?.container || '')}
         >
@@ -38,13 +42,24 @@ function TableCustom({ className, classNames, columns, rows, makeCellContent, ma
                     className={" " + (classNames?.tbody || '')}
                 >
                     {rows && rows.map((row, i) => {
-                        const id = row.key || row.id || i
+                        var id = ''
+                        try {
+                            id = row[rowColumnId]
+                        } catch (error) {
+                            id = row?.key || row?.id || i
+                        }
 
-                        const className = ` ${classNames?.row || ''} ${(selectionMode && selectionMode === 'single') ? 'hover:bg-default-100' : ''}`
-                        const data = { 'data-slot': 'row' }
+                        const className = `${classNames?.row || ''} 
+                        ${selectionMode ? 'cursor-pointer' : ''} 
+                        ${(selectionMode && selectionMode === 'single')
+                                ? 'hover:bg-default-100 data-[selected=true]:bg-default-200'
+                                : ''} `
 
-                        var tr = <tr></tr>
-                        if (makeRow) tr = makeRow()
+                        // ${classNames?.selectedRow || ''}
+                        const data = { 'data-slot': 'row', 'data-selected': selectedRows && selectedRows.includes(id) }
+
+                        var tr = <tr onClick={() => handleSelectedRow(id)}></tr>
+                        if (makeRow) tr = makeRow(row)
 
                         const existingData = tr.props
                         const existingClassName = tr.props.className || ''
@@ -54,7 +69,7 @@ function TableCustom({ className, classNames, columns, rows, makeCellContent, ma
                         tr = React.cloneElement(tr, {
                             key: id,
                             ...mergedData,
-                            className: mergedClassName
+                            className: mergedClassName,
                         })
 
                         const cells = columns && columns.map(col => {
@@ -74,40 +89,10 @@ function TableCustom({ className, classNames, columns, rows, makeCellContent, ma
                         })
 
                         return React.cloneElement(tr, {}, cells)
-
-                        // return <tr
-                        //     key={id}
-                        //     data-slot="row"
-                        //     className={" " +
-                        //         (classNames?.row || '') + " " +
-                        //         (selectionMode
-                        //             ? selectionMode === 'single'
-                        //                 ? 'hover:bg-default-100'
-                        //                 : ''
-                        //             : ''
-                        //         )
-                        //     }
-                        // >
-                        //     {columns && columns.map(col => {
-                        //         const id_col = col?.key || col?.id || col
-                        //         return <td
-                        //             key={id + "_" + id_col}
-                        //             data-slot="cell"
-                        //             className={"py-2 px-3 text-small capitalize " + (classNames?.td || '')}
-                        //         >
-                        //             {makeCellContent
-                        //                 ? makeCellContent(row, id_col)
-                        //                 : row[id_col]
-                        //                     ? row[id_col]
-                        //                     : null
-                        //             }
-                        //         </td>
-                        //     })}
-                        // </tr>
                     })}
                 </tbody>
             </table>
-        </section >
+        </div >
     );
 }
 

@@ -8,25 +8,37 @@ import { Navbar, NavbarContent, NavbarItem, NavbarMenuToggle, Button, NavbarMenu
 import MenuMovilListItems from './components/MenuMovilListItems.js';
 import Submenu from './components/Submenu.js';
 import NavbarTop from './components/NavbarTop.js';
+import ModalLog from './components/ModalLog/ModalLog.js';
 
 import { PiSunDimFill, PiMoonFill, PiCylinderThin } from "react-icons/pi";
 import { IoMagnetOutline, IoHomeOutline } from "react-icons/io5";
 import { BsBoxSeam, BsThreeDots } from "react-icons/bs";
 import { GiGlassBall } from "react-icons/gi";
 import { IoLogoWhatsapp } from "react-icons/io5";
+import { MdLogout } from "react-icons/md";
 
 import { SVGLadrillo, SVGCurvo, SVGArandela } from '../../../../assets/svgs.js'
 
 
 
-function Menu({ dark, setDark, cart }) {
+function Menu({ dark, setDark, cart, setUser, user }) {
   const navigate = useNavigate()
   const location = useLocation()
   const [openMenuMovil, setOpenMenuMovil] = useState(false)
   const [submenu, setSubmenu] = useState(false)
+  const [openModalLog, setOpenModalLog] = useState(false)
 
-  const menu_items = ['inicio', 'productos', 'imanes', 'otros']
-  const submenus = { 'imanes': ['redondos', 'cuadrados', 'esferas', 'curvos', 'arandelas'] }
+  var menu_items = ['inicio', 'productos', 'imanes', 'otros']
+  if (user) {
+    if (user?.rango === 1) {
+      menu_items = ['inicio', 'productos', 'pedidos', 'administrar']
+    } else if ([2, 3].includes(user?.rango)) {
+      menu_items = ['inicio', 'productos', 'pedidos']
+    }
+  }
+  const submenus = {
+    'imanes': ['redondos', 'cuadrados', 'esferas', 'curvos', 'arandelas']
+  }
 
   const icons = {
     inicio: <IoHomeOutline />,
@@ -61,12 +73,14 @@ function Menu({ dark, setDark, cart }) {
 
   return (
     <div className='bg-content1 flex flex-col items-center'>
-
       <NavbarTop
         cart={cart}
         navigate={navigate}
+        location={location}
         submenu={submenu}
         openMenuMovil={openMenuMovil}
+        openLog={() => setOpenModalLog(true)}
+        isLogged={!!user}
       />
 
       <Navbar
@@ -74,22 +88,22 @@ function Menu({ dark, setDark, cart }) {
         isMenuOpen={openMenuMovil}
         className='shadow-lg transition-all bg-content1'
         classNames={{
-          wrapper: 'xs:h-[48px] xs:ps-0',
-          item:'dark:data-[active=true]:text-warning data-[active=true]:text-custom-red-dark'
+          wrapper: 'min-[450px]:h-[48px] min-[450px]:ps-0',
+          item: 'dark:data-[active=true]:text-warning data-[active=true]:text-custom-red-dark'
         }}
       >
         {/* logo */}
         <NavbarContent>
           <NavbarMenuToggle
             aria-label='abrir/cerrar menu'
-            className="xs:hidden"
+            className="min-[450px]:hidden"
             onClick={() => setOpenMenuMovil(!openMenuMovil)}
           />
         </NavbarContent>
 
 
         {/* menu */}
-        <NavbarContent className="hidden items-center xs:flex gap-2 sm:gap-4 " justify="center">
+        <NavbarContent className="hidden items-center min-[450px]:flex gap-2 sm:gap-4 " justify="center">
           {menu_items.map(item =>
             < NavbarItem
               key={item}
@@ -121,7 +135,6 @@ function Menu({ dark, setDark, cart }) {
               aria-label="Modo oscuro"
               size='sm'
               color='success'
-              className='rounded-full'
             >
               <IoLogoWhatsapp size={24} />
             </Button>
@@ -141,12 +154,28 @@ function Menu({ dark, setDark, cart }) {
               }
             </Button>
           </NavbarItem>
+          {user && (
+            <NavbarItem>
+              <Button
+                isIconOnly
+                variant='light'
+                aria-label="Cerrar sesion"
+                size='sm'
+                onClick={() => {
+                  navigate("/")
+                  setUser(false)
+                }}
+              >
+                <MdLogout size={24} />
+              </Button>
+            </NavbarItem>
+          )}
         </NavbarContent>
 
 
         {/* menu movil */}
         <NavbarMenu
-          className='p-0 shadow-inner overflow-hidden max-w-[360px]'
+          className='p-0 shadow-inner overflow-hidden max-w-[450px]'
           style={{
             zIndex: '40',
             top: `calc(var(--navbar-height) + 64px)`
@@ -185,8 +214,20 @@ function Menu({ dark, setDark, cart }) {
             icons={icons}
           />
         </div >
-      )
-      }
+      )}
+
+      <ModalLog
+        isOpen={openModalLog}
+        setOpen={setOpenModalLog}
+        dark={dark}
+        logIn={user => {
+          setUser(user)
+          setOpenModalLog(false)
+        }}
+        onRegister={() => {
+          setOpenModalLog(false)
+        }}
+      />
     </div >
   );
 }

@@ -64,8 +64,6 @@ function Footer() {
 
     return (
         <footer className='mt-auto bg-content1 shadow-inner flex flex-col justify-center relative '>
-            {/* <div className='flex flex-col justify-center items-center lg:flex-row'> */}
-            {/* <div className='flex flex-col items-center justify-center gap-2 mb-3 w-full'> */}
             <span className="flex justify-center gap-1 h-[96px] mt-10 mb-10">
                 <SVGLogoIman className='h-full w-auto' />
                 <SVGLogoTexto className='h-full w-auto text-justify' />
@@ -100,7 +98,6 @@ function Footer() {
             </div>
 
             <div className='w-full bg-content2 flex flex-col items-center pt-6 gap-2'>
-
                 <Card
                     isPressable
                     className='w-fit self-center shadow-none hover:scale-90 lg:absolute lg:right-[1%] top-[3%]  max-lg:mb-4'
@@ -114,9 +111,9 @@ function Footer() {
                 </Card>
 
                 <Divider className='w-[50%]' />
-                <div className='flex  sm:justify-evenly max-sm:flex-col gap-1 py-1 text-center '>
-                    <p className='w-[220px] sm:text-end sm:pe-2'>Tel. +xx (xxx) xxx-xxxxxx</p>
-                    <p className='w-[220px] sm:border-s border-divider sm:text-start sm:ps-2'>Ciudad, Provincia, País</p>
+                <div className='flex sm:justify-evenly max-sm:flex-col gap-1 py-1 text-center '>
+                    <p className='xs:w-[220px] sm:text-end sm:pe-2 '>Tel. +xx (xxx) xxx-xxxxxx</p>
+                    <p className='xs:w-[220px] sm:border-s border-divider sm:text-start sm:ps-2'>Ciudad, Provincia, País</p>
                 </div>
                 <Divider className='w-[50%]' />
 
